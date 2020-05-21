@@ -1,0 +1,46 @@
+{
+  "name": "langsec-and-graphql",
+  "version": "1.0.0",
+  "description": "This is a presentation on LangSec and Graphql",
+  "main": "index.js",
+  "scripts": {
+    "test": "jest --coverage",
+    "repl": "babel-node",
+    "graphql:vuln": "node graphql-injectable.js",
+    "graphql:int": "node graphql-integer.js",
+    "graphql:enum": "node graphql-enum.js",
+    "graphql:customtype": "node graphql-custom-type.js"
+  },
+  "keywords": [],
+  "author": "Mike Williamson",
+  "dependencies": {
+    "express": "^4.17.1",
+    "express-graphql": "^0.9.0",
+    "graphql": "^15.0.0",
+    "luhnify": "^1.1.1"
+  },
+  "devDependencies": {
+    "@babel/core": "^7.9.6",
+    "@babel/node": "^7.8.7",
+    "@babel/plugin-proposal-class-properties": "^7.8.3",
+    "@babel/plugin-transform-runtime": "^7.9.6",
+    "@babel/preset-env": "^7.9.6",
+    "@babel/preset-react": "^7.9.4",
+    "@babel/runtime": "^7.9.6",
+    "acorn": "^7.2.0",
+    "babel-core": "^7.0.0-bridge.0",
+    "babel-loader": "^8.1.0",
+    "babel-plugin-istanbul": "^6.0.0",
+    "babel-plugin-macros": "^2.8.0",
+    "eslint": "^7.0.0",
+    "eslint-config-prettier": "^6.11.0",
+    "eslint-config-standard": "^14.1.1",
+    "eslint-plugin-import": "^2.20.2",
+    "eslint-plugin-jest": "^23.10.0",
+    "eslint-plugin-node": "^11.1.0",
+    "eslint-plugin-promise": "^4.2.1",
+    "eslint-plugin-standard": "^4.0.1",
+    "jest": "^26.0.1",
+    "prettier": "^1.19.1"
+  }
+}

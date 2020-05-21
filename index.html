@@ -1,0 +1,734 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Template</title>
+    <meta charset="utf-8" />
+    <meta
+      name="viewport"
+      content="user-scalable=no,initial-scale=1,maximum-scale=1,minimum-scale=1,width=device-width"
+    />
+    <link rel="stylesheet" type="text/css" href="./css/typo.css" />
+    <link rel="stylesheet" type="text/css" href="./css/nord-dark.css" />
+    <link rel="stylesheet" type="text/css" href="./css/font-nord.css" />
+    <link rel="stylesheet" type="text/css" href="./css/bg-nord.css" />
+    <link rel="stylesheet" type="text/css" href="./css/style.css" />
+  </head>
+  <body>
+    <textarea id="source">
+
+class: nord-dark, center, middle, title
+
+# Building safer systems
+## Applying LangSec principles with GraphQL
+
+---
+
+class: nord-dark, left, middle
+
+## LangSec
+
+> In a nutshell, language-theoretic security (LangSec) is the idea that many security issues can be avoided by applying a standard process to input processing and protocol design
+
+<cite>Momot, Falcon, et al. "The seven turrets of babel: A taxonomy of langsec errors and how to expunge them."<br/> 2016 IEEE Cybersecurity Development (SecDev). IEEE, 2016.</cite>
+
+---
+
+class: nord-dark, left, middle
+
+## The "standard process"
+
+* The acceptable input to a program should be well-defined (i.e., via a grammar)
+* As simple as possible (on the Chomsky scale of syntactic complexity)
+* Fully validated before use (by a dedicated parser of appropriate but not excessive power in the Chomsky hierarchy of automata).
+
+<cite>Momot, Falcon, et al. "The seven turrets of babel: A taxonomy of langsec errors and how to expunge them."<br/> 2016 IEEE Cybersecurity Development (SecDev). IEEE, 2016.</cite>
+
+---
+
+class: nord-dark, center, middle
+
+![langsec](images/langsec-recognizer-pattern.svg)
+
+---
+
+class: nord-dark, left, middle,
+
+## The payoff
+
+> A correctly written parser is essentially equivalent to an application firewall.
+
+<cite>Momot, Falcon, et al. "The seven turrets of babel: A taxonomy of langsec errors and how to expunge them."<br/> 2016 IEEE Cybersecurity Development (SecDev). IEEE, 2016.</cite>
+
+---
+
+class: nord-dark, center, middle
+background-image: url(images/graphql-superfriends.png)
+
+.thirty[![graph](images/graphql_logo.svg)]
+
+---
+
+<iframe src="https://spec.graphql.org/June2018/"><iframe>
+---
+
+class: nord-dark, left, middle
+
+## Defining types and their fields adds to the language
+
+```js
+const query = new GraphQLObjectType({
+  name: 'Query',
+  fields: () => ({
+    widget: {
+      type: Widget,
+      args: {
+        id: {
+          description: 'The id of the widget',
+          type: new GraphQLNonNull(GraphQLInt),
+        },
+      },
+      resolve: (source, { id }) => {
+         // Return something matching the Widget Type
+         return { name: "Widget One" }
+      },
+    },
+  }),
+})
+
+const  schema = new GraphQLSchema({ query })
+```
+---
+
+class: nord-dark, center, middle
+
+## Queries are written in a formal language
+
+![graphql query](images/query-structure.svg)
+
+---
+class: nord-dark, left, middle
+
+## And passed to a recognizer
+
+```js
+//      spec       input
+graphql(schema, `query { widget(id: 1){name} }`) // there's a parser in there!
+{
+  "data": {
+    "widget": {
+      "name": "Widget One"
+    }
+  }
+}
+```
+
+---
+
+class: nord-dark, center, middle
+
+![langsec](images/langsec-recognizer-pattern.svg)
+
+---
+
+class: nord-dark, center, middle
+
+.bump[![graphql](images/langsec-recognizer-pattern-graphql.svg)]
+
+---
+
+class: nord-dark, center, middle
+
+#### GraphQL makes LangSec style architecture possible for "mere mortals"
+
+---
+
+class: nord-dark, left, middle
+
+## Building with GraphQL
+
+---
+
+class: nord-dark, left, middle
+
+```js
+const query = new GraphQLObjectType({
+  name: 'Query',
+  fields: () => ({
+    widget: {
+      type: GraphQLString,
+      resolve: () => { // 👀
+        return `select * from widgets limit 1;`
+      },
+    },
+  }),
+})
+```
+
+---
+
+class: nord-dark, left, middle
+
+```js
+const query = new GraphQLObjectType({
+  name: 'Query',
+  fields: () => ({
+    widget: {
+      type: GraphQLString, // 👀
+      resolve: () => {
+        return `select * from widgets limit 1;`
+      },
+    },
+  }),
+})
+```
+
+---
+
+class: nord-dark, left, middle
+
+## Showing a widget
+
+```graphql
+// Our schema allows this query
+query {
+  widget
+}
+
+// But we want to accept an input
+query {
+  widget(id: 1) // we're just going to return a string!
+}
+```
+
+---
+
+class: nord-dark, left, middle
+
+```js
+const query = new GraphQLObjectType({
+  name: 'Query',
+  fields: () => ({
+    widget: {
+      type: GraphQLString,
+      args: {}, // 👀
+      resolve: () => {
+        return `select * from widgets limit 1;`
+      },
+    },
+  }),
+})
+```
+
+---
+
+class: nord-dark, left, middle
+
+```js
+const query = new GraphQLObjectType({
+  name: 'Query',
+  fields: () => ({
+    widget: {
+      type: GraphQLString,
+      args: {
+        id: { // 👀
+          description: 'The id of the widget',
+          type: new GraphQLNonNull(GraphQLString),
+        },
+      },
+      resolve: () => {
+        return `select * from widgets limit 1;`
+      },
+    },
+  }),
+})
+```
+
+---
+
+class: nord-dark, left, middle
+
+```js
+const query = new GraphQLObjectType({
+  name: 'Query',
+  fields: () => ({
+    widget: {
+      type: GraphQLString,
+      args: {
+        id: {
+          description: 'The id of the widget', // 👀
+          type: new GraphQLNonNull(GraphQLString),
+        },
+      },
+      resolve: () => {
+        return `select * from widgets limit 1;`
+      },
+    },
+  }),
+})
+```
+
+---
+
+class: nord-dark, left, middle
+
+```js
+const query = new GraphQLObjectType({
+  name: 'Query',
+  fields: () => ({
+    widget: {
+      type: GraphQLString,
+      args: {
+        id: {
+          description: 'The id of the widget',
+          type: new GraphQLNonNull(GraphQLString), // 👀
+        },
+      },
+      resolve: () => {
+        return `select * from widgets limit 1;`
+      },
+    },
+  }),
+})
+```
+
+---
+
+class: nord-dark, left, middle
+
+```js
+const query = new GraphQLObjectType({
+  name: 'Query',
+  fields: () => ({
+    widget: {
+      type: GraphQLString,
+      args: {
+        id: {
+          description: 'The id of the widget',
+          type: new GraphQLNonNull(GraphQLString),
+        },
+      },
+      resolve: (source, { id }) => { // 👀
+        //                                    SQL injection!
+        return `select * from widgets where id = '${id}';` // 😬
+      },
+    },
+  }),
+})
+```
+
+---
+
+class: nord-dark, left, middle
+
+```bash
+$ curl -sH "Content-Type: application/graphql" \
+  -d "{widget(id:\"'; drop table widgets; --\")}" localhost:3000 | jq .
+{
+  "data": {
+    "widget": "select * from widgets where id = ''; drop table widgets; --';"
+  }
+}
+```
+
+---
+
+class: nord-dark, left, middle
+
+## GraphQL !== LangSec
+
+* Facebook arrived here solving mobile data fetching not security
+* To leverage the infrastructure GraphQL gives us, we need to learn from LangSec
+
+---
+
+class: nord-dark, left, middle
+
+# LangSec Principles with GraphQL
+## (Freedom isn't free)
+
+---
+
+class: nord-dark, center, middle
+
+##  Anti-pattern: Accepting complex data
+
+---
+
+class: nord-dark, left, middle,
+
+> Part of the value of adopting this approach is that you have a clear idea of what data you
+accept, but *you give up attempting to accept arbitrarily complex data*.
+
+<cite>BRATUS, SERGEY, et al. "Curing the Vulnerable Parser."</cite>
+
+---
+
+class: center, middle
+
+> Trustworthy input is input with predictable effects.
+
+.ninety[![](images/json-type.png)]
+
+<cite>BRATUS, SERGEY, et al. "Curing the Vulnerable Parser."</cite>
+
+---
+
+class: center, middle
+
+#### We are wandering away from the specificity needed for predictability.
+
+.ninety[![](images/json-type.png)]
+
+---
+
+class: nord-dark, center, middle
+
+## Anti-pattern: Strings
+
+---
+
+class: nord-dark, left, middle
+
+## Strings are unparsed data. Don't bypass the recognizer!
+
+* No length limit!
+* SQL? String
+* Javascript? String
+* URL? String
+* JSON? String
+* XML? String
+* Base64 encoded video/image? String
+
+---
+
+class: nord-dark, left, middle
+
+> In summary, the problem with using strings is that you use one generic data type, for completely unstructured data, for many kinds of data, hiding the fact that there are many different languages involved, possibly very expressive ones, each with their own interpretation. ...  The Top 10 Security Software Design Flaws by Arce et al. also warn about the use of strings as an anti-pattern. <em>We would go one step further and argue that using structured types instead of strings is preferable everywhere.</em>
+
+<cite>Poll, Erik. "LangSec revisited: input security flaws of the second kind." 2018 IEEE Security and Privacy Workshops (SPW). IEEE, 2018.</cite>
+
+---
+
+class: nord-dark, left, middle,
+
+## Security automation with GraphQL introspection
+
+---
+
+class: nord-dark, left, middle,
+
+### A GraphQL endpoint can describe the data it exposes and inputs it accepts.
+
+```graphql
+{
+  __schema {
+    queryType {
+      fields {
+        name
+      }
+    }
+  }
+}
+```
+
+---
+
+<iframe src="https://apis.guru/graphql-voyager/"><iframe>
+---
+
+class: nord-dark, left, middle
+
+## Introspection powered API audits for string inputs!
+
+```bash
+$ npx graphql-attack-surface https://swapi.graph.cool
+npx: installed 138 in 13.706s
+
+createFilm accepts the following string inputs:
+  director accepts a value of String
+  openingCrawl accepts a value of String
+  producers accepts a value of [String!]
+  title accepts a value of String!
+```
+
+---
+
+class: nord-dark, center, middle
+
+### Proposing alternatives to strings
+
+---
+
+class: nord-dark, center, middle
+
+### String alternative: being specific!
+
+---
+
+class: nord-dark, left, middle
+
+### Just use something better!
+
+```js
+const query = new GraphQLObjectType({
+  name: 'Query',
+  fields: () => ({
+    widget: {
+      type: GraphQLString,
+      args: {
+        id: {
+          description: 'The id of the widget',
+          type: new GraphQLNonNull(GraphQLInt), // 🤩
+        },
+      },
+      resolve: (source, { id }) => {
+        //                                    SQL injection!
+        return `select * from widgets where id = '${id}';`
+      },
+    },
+  }),
+})
+```
+
+---
+
+class: nord-dark, left, middle
+
+## Recognizer (not our code!) rejects invalid input:
+
+```bash
+$ curl -sH "Content-Type: application/graphql" \
+   -d "{widget(id:\"'; drop table widgets; --\")}" localhost:3000 | jq .
+{
+  "errors": [
+    {
+      "message": "Int cannot represent non-integer value: \"'; drop table widgets; --\"",
+      "locations": [
+        {
+          "line": 1,
+          "column": 13
+        }
+      ]
+    }
+  ]
+}
+
+```
+
+---
+
+class: nord-dark, left, middle
+
+# String alternative: Enum
+
+---
+
+class: nord-dark, left, middle
+
+## Enum Type declaration
+
+```js
+const WIDGET = new GraphQLEnumType({
+  name: 'WIDGET',
+  values: {
+    RED_WIDGET: { value: 'red-widget' },
+    GREEN_WIDGET: { value: 'green-widget' },
+    BLUE_WIDGET: { value: 'blue-widget' },
+  },
+})
+```
+
+---
+
+class: nord-dark, left, middle
+
+## Using our Enum Type
+
+```js
+const query = new GraphQLObjectType({
+  name: 'Query',
+  fields: () => ({
+    widget: {
+      type: GraphQLString,
+      args: {
+        name: {
+          description: 'The name of the widget',
+          type: new GraphQLNonNull(WIDGET), // 👀
+        },
+      },
+      resolve: (source, { name }) => {
+        //                                    SQL injection!
+        return `select * from widgets where name = '${name}';`
+      },
+    },
+  }),
+})
+```
+
+---
+
+class: nord-dark, left, middle
+
+### Valid queries
+
+```graphql
+// these are the only possible queries
+{
+  widgets(name: RED_WIDGET)
+}
+
+{
+  widgets(name: GREEN_WIDGET)
+}
+
+{
+  widgets(name: BLUE_WIDGET)
+}
+```
+
+---
+
+class: nord-dark, left, middle
+
+## Enum in use
+
+```bash
+$ curl -sH "Content-Type: application/graphql" \
+   -d '{ widget(name: RED_WIDGET) }' localhost:3000 | jq .
+{
+  "data": {
+    "widget": "select * from widgets where name = 'red-widget';"
+  }
+}
+
+```
+
+---
+
+class: nord-dark, left, middle
+
+## String alternative: Custom Scalar Types
+
+---
+
+class: nord-dark, center, middle
+
+## Scalar Types?
+
+.thirty[![dag](images/dag-with-labels.svg)]
+
+---
+
+class: nord-dark, center, middle
+
+## Scalar Types?
+
+.ninety[![dag](images/graphql-scalars.png)]
+
+---
+
+class: nord-dark, left, middle
+
+### String alternative: Custom Scalar Types!
+
+```js
+let AlphabeticString = new GraphQLScalarType({
+  name: 'AlphabeticString',
+  description: 'represents a string with no special characters.',
+  serialize: String,
+  parseValue: value => {
+    if (value.match(/^([A-Za-z]|\s)+$/)) {
+      return value
+    } else {
+      throw new GraphQLError(
+        'AlphabeticString can only contain A-Za-z and spaces',
+      )
+    }
+  },
+  parseLiteral: ast => {
+    if (ast.value.match(/^([A-Za-z]|\s)+$/)) {
+      return ast.value
+    } else {
+      throw new GraphQLError(
+        'AlphabeticString can only contain A-Za-z and spaces',
+      )
+    }
+  },
+})
+```
+
+---
+
+class: nord-dark, left, middle
+
+### String alternative: Custom Scalar Types!
+
+```js
+let query = new GraphQLObjectType({
+  name: 'Query',
+  fields: () => ({
+    widget: {
+      type: GraphQLString,
+      args: {
+        name: {
+          description: 'The name of the widget',
+          type: new GraphQLNonNull(AlphabeticString), // 👀
+        },
+      },
+      resolve: (source, { name }) => {
+        return `select * from widgets where name = '${name}';`
+      },
+    },
+  }),
+})
+```
+
+---
+
+class: nord-dark, left, middle
+
+### String alternative: Custom Scalar Types!
+
+```js
+$ curl -sH "Content-Type: application/graphql" \
+   -d "{ widget(name:\"'; drop table widgets; --\") }" localhost:3000 | jq .
+{
+  "errors": [
+    {
+      "message": "AlphabeticString can only contain A-Za-z and spaces"
+    }
+  ]
+}
+
+```
+
+---
+
+class: nord-dark, center, middle
+
+> LangSec offers a unifying explanation for the existence of vulnerabilities and their continual perpetuation under current software design practices despite massive efforts at defining secure development practices. In short, *the existence of exploitable bugs is a consequence of software designs that make verification and comprehensive testing infeasible and undecidable in the formal sense*.
+
+<cite>LangSec: Recognition, Validation, and Compositional Correctness for Real World Security. (2013). USENIX Security BoF hand-out. Available from http://langsec.org/bof-handout.pdf</cite>
+
+---
+
+class: nord-dark, center, middle
+background-image: url(images/hanzo.png)
+
+### You are now equipped with the Hanzo steel of input handling.
+
+## Only LangSec can teach you to wield it well.
+
+* .two[![](images/github.svg)] @sleepycat
+* .two[![](images/twitter.svg)] @dexterchief
+
+    </textarea>
+
+    <script src="js/remark.min.js"></script>
+    <script>
+      var slideshow = remark.create({
+        ratio: '16:9',
+      })
+    </script>
+  </body>
+</html>

@@ -1,0 +1,166 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<svg
+   xmlns:dc="http://purl.org/dc/elements/1.1/"
+   xmlns:cc="http://creativecommons.org/ns#"
+   xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+   xmlns:svg="http://www.w3.org/2000/svg"
+   xmlns="http://www.w3.org/2000/svg"
+   id="svg8"
+   version="1.1"
+   viewBox="0 0 134.27801 172.26155"
+   height="172.26155mm"
+   width="134.27802mm">
+  <defs
+     id="defs2" />
+  <metadata
+     id="metadata5">
+    <rdf:RDF>
+      <cc:Work
+         rdf:about="">
+        <dc:format>image/svg+xml</dc:format>
+        <dc:type
+           rdf:resource="http://purl.org/dc/dcmitype/StillImage" />
+        <dc:title></dc:title>
+      </cc:Work>
+    </rdf:RDF>
+  </metadata>
+  <g
+     transform="translate(-78.531305,34.383577)"
+     id="layer1">
+    <path
+       id="path2183"
+       d="m 130.71195,75.150647 35.37187,-53.409376 32.7156,53.602878"
+       style="fill:none;stroke:#ffffff;stroke-width:1.2;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1" />
+    <path
+       style="fill:none;stroke:#ffffff;stroke-width:1.2;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
+       d="m 97.996354,21.547769 35.371866,-53.409376 32.7156,53.602878"
+       id="path2187" />
+    <path
+       style="fill:none;stroke:#ffffff;stroke-width:1.2;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
+       d="m 95.340083,128.56002 35.371867,-53.409373 32.7156,53.602883"
+       id="path2189" />
+    <ellipse
+       ry="1.2932117"
+       rx="1.3105103"
+       cy="-32.42765"
+       cx="133.30376"
+       id="path2191"
+       style="fill:#ffffff;stroke:#ffffff;stroke-width:1.2;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1" />
+    <ellipse
+       ry="1.2932117"
+       rx="1.3105103"
+       style="fill:#ffffff;stroke:#ffffff;stroke-width:1.2;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
+       id="circle2193"
+       cx="97.40696"
+       cy="22.082785" />
+    <ellipse
+       ry="1.2932117"
+       rx="1.3105103"
+       cy="21.881872"
+       cx="165.99559"
+       id="circle2195"
+       style="fill:#ffffff;stroke:#ffffff;stroke-width:1.2;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1" />
+    <ellipse
+       ry="1.2932117"
+       rx="1.3105103"
+       style="fill:#ffffff;stroke:#ffffff;stroke-width:1.2;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
+       id="circle2197"
+       cx="199.0511"
+       cy="75.967781" />
+    <ellipse
+       ry="1.2932117"
+       rx="1.3105103"
+       cy="128.80789"
+       cx="163.40324"
+       id="circle2199"
+       style="fill:#ffffff;stroke:#ffffff;stroke-width:1.2;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1" />
+    <ellipse
+       ry="1.2932117"
+       rx="1.3105103"
+       style="fill:#ffffff;stroke:#ffffff;stroke-width:1.2;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
+       id="circle2201"
+       cx="95.022903"
+       cy="128.77878" />
+    <ellipse
+       ry="1.2932117"
+       rx="1.3105103"
+       cy="75.775711"
+       cx="130.54498"
+       id="circle2203"
+       style="fill:#ffffff;stroke:#ffffff;stroke-width:1.2;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1" />
+    <g
+       style="display:inline"
+       id="g2287">
+      <text
+         xml:space="preserve"
+         style="font-style:normal;font-weight:normal;font-size:4.93889px;line-height:1.25;font-family:sans-serif;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.264583"
+         x="94.12899"
+         y="77.584068"
+         id="text2247"><tspan
+           id="tspan2245"
+           x="94.12899"
+           y="77.584068"
+           style="font-size:4.93889px;fill:#ffffff;stroke-width:0.264583">GraphQLList</tspan></text>
+      <text
+         id="text2251"
+         y="136.85065"
+         x="78.253975"
+         style="font-style:normal;font-weight:normal;font-size:4.93889px;line-height:1.25;font-family:sans-serif;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.264583"
+         xml:space="preserve"><tspan
+           style="font-size:4.93889px;fill:#ffffff;stroke-width:0.264583"
+           y="136.85065"
+           x="78.253975"
+           id="tspan2249">GraphQLString</tspan></text>
+      <text
+         xml:space="preserve"
+         style="font-style:normal;font-weight:normal;font-size:4.93889px;line-height:1.25;font-family:sans-serif;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.264583"
+         x="147.04536"
+         y="136.85065"
+         id="text2255"><tspan
+           id="tspan2253"
+           x="147.04536"
+           y="136.85065"
+           style="font-size:4.93889px;fill:#ffffff;stroke-width:0.264583">GraphQLString</tspan></text>
+      <text
+         id="text2259"
+         y="83.404922"
+         x="184.61569"
+         style="font-style:normal;font-weight:normal;font-size:4.93889px;line-height:1.25;font-family:sans-serif;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.264583"
+         xml:space="preserve"><tspan
+           style="font-size:4.93889px;fill:#ffffff;stroke-width:0.264583"
+           y="83.404922"
+           x="184.61569"
+           id="tspan2257">GraphQLInt</tspan></text>
+      <text
+         xml:space="preserve"
+         style="font-style:normal;font-weight:normal;font-size:4.93889px;line-height:1.25;font-family:sans-serif;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.264583"
+         x="80.556557"
+         y="30.254448"
+         id="text2263"><tspan
+           id="tspan2261"
+           x="80.556557"
+           y="30.254448"
+           style="font-size:4.93889px;fill:#ffffff;stroke-width:0.264583">GraphQLFloat</tspan></text>
+      <text
+         id="text2267"
+         y="-30.631178"
+         x="138.24074"
+         style="font-style:normal;font-weight:normal;font-size:4.93889px;line-height:1.25;font-family:sans-serif;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.264583"
+         xml:space="preserve"><tspan
+           style="font-size:4.93889px;fill:#ffffff;stroke-width:0.264583"
+           y="-30.631178"
+           x="138.24074"
+           id="tspan2265">Object</tspan></text>
+      <text
+         xml:space="preserve"
+         style="font-style:normal;font-weight:normal;font-size:4.93889px;line-height:1.25;font-family:sans-serif;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.264583"
+         x="171.93349"
+         y="22.587555"
+         id="text2271"><tspan
+           id="tspan2269"
+           x="171.93349"
+           y="22.587555"
+           style="font-size:4.93889px;fill:#ffffff;stroke-width:0.264583">Object</tspan></text>
+    </g>
+  </g>
+</svg>

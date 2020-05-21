@@ -1,0 +1,25 @@
+{
+  "extends": [
+    "standard",
+    "prettier",
+    "plugin:import/errors",
+    "plugin:import/warnings"
+  ],
+  "plugins": ["jest"],
+  "env": {
+    "jest/globals": true
+  },
+  "rules": {
+    "react/no-unescaped-entities": ["off", {}],
+    "comma-dangle": ["error", "always-multiline"],
+    "no-unused-vars": [
+      "error",
+      {
+        "vars": "all",
+        "args": "all",
+        "varsIgnorePattern": "_",
+        "argsIgnorePattern": "_"
+      }
+    ]
+  },
+}
