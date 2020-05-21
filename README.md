@@ -1,6 +1,7 @@
 # Building Safer Systems
 
-this is a presentation for [BSides Halifax](https://bsideshalifax.ca/) on using LangSec Principles with GraphQL.
+This is a presentation for [BSides Halifax](https://bsideshalifax.ca/) on using LangSec Principles with GraphQL.
+These slides are visible at [sleepycat.github.io/building-safer-systems](https://sleepycat.github.io/building-safer-systems).
 
 ## Running the code examples
 
