@@ -138,6 +138,39 @@ class: nord-dark, center, middle
 
 class: nord-dark, center, middle
 
+# What about output?
+
+---
+
+class: nord-dark, left, middle
+
+> Connecting the Recognizer, Most Restrictive Input Definition, and Unparser patterns using a business logic that translates InputData to OutputData results in a Transducer.
+
+<cite>BRATUS, SERGEY, et al. "Curing the Vulnerable Parser."</cite>
+
+---
+
+class: nord-dark, center, middle
+
+### The Transducer Pattern
+#### Recognizer > Business logic > Unparser
+
+.ninety[![graphql](images/langsec-architecture-recognizer-unparser.svg)]
+
+---
+
+class: nord-dark, left, middle
+
+### GraphQL forces outputs to conform to the type system
+
+> The special case when InputGrammar and OutputGrammar are the same can be employed as a transparent filter at the trust boundary of a system. It acts like a syntactic firewall, improving the system’s predictability by enforcing a strict input specification.
+
+<cite>BRATUS, SERGEY, et al. "Curing the Vulnerable Parser."</cite>
+
+---
+
+class: nord-dark, center, middle
+
 #### GraphQL makes LangSec style architecture possible for "mere mortals"
 
 ---
@@ -157,6 +190,7 @@ const query = new GraphQLObjectType({
     widget: {
       type: GraphQLString,
       resolve: () => { // 👀
+        // Business logic to turn input data into output data
         return `select * from widgets limit 1;`
       },
     },
