@@ -559,13 +559,13 @@ $ curl -sH "Content-Type: application/graphql" \
 
 class: nord-dark, left, middle
 
-# String alternative: Enum
+# String alternative: enum
 
 ---
 
 class: nord-dark, left, middle
 
-## Enum Type declaration
+## Enum type declaration
 
 ```js
 const WIDGET = new GraphQLEnumType({
@@ -582,7 +582,7 @@ const WIDGET = new GraphQLEnumType({
 
 class: nord-dark, left, middle
 
-## Using our Enum Type
+## Using our enum type
 
 ```js
 const query = new GraphQLObjectType({
@@ -647,13 +647,13 @@ $ curl -sH "Content-Type: application/graphql" \
 
 class: nord-dark, left, middle
 
-## String alternative: Custom Scalar Types
+## String alternative: custom scalar types
 
 ---
 
 class: nord-dark, center, middle
 
-## Scalar Types?
+## Scalar types?
 
 .thirty[![dag](images/dag-with-labels.svg)]
 
@@ -661,7 +661,7 @@ class: nord-dark, center, middle
 
 class: nord-dark, center, middle
 
-## Scalar Types?
+## Scalar types!
 
 .ninety[![dag](images/graphql-scalars.png)]
 
@@ -669,7 +669,7 @@ class: nord-dark, center, middle
 
 class: nord-dark, left, middle
 
-### String alternative: Custom Scalar Types!
+### Creating a custom scalar
 
 ```js
 let AlphabeticString = new GraphQLScalarType({
@@ -701,7 +701,7 @@ let AlphabeticString = new GraphQLScalarType({
 
 class: nord-dark, left, middle
 
-### String alternative: Custom Scalar Types!
+### Using our custom scalar
 
 ```js
 let query = new GraphQLObjectType({
@@ -727,7 +727,7 @@ let query = new GraphQLObjectType({
 
 class: nord-dark, left, middle
 
-### String alternative: Custom Scalar Types!
+### Testing our custom scalar
 
 ```js
 $ curl -sH "Content-Type: application/graphql" \
