@@ -27,7 +27,7 @@ class: nord-dark, left, middle
 
 ## LangSec
 
-> In a nutshell, language-theoretic security (LangSec) is the idea that many security issues can be avoided by applying a standard process to input processing and protocol design
+> In a nutshell, language-theoretic security (LangSec) is the idea that *many security issues can be avoided by applying a standard process to input processing* and protocol design
 
 <cite>Momot, Falcon, et al. "The seven turrets of babel: A taxonomy of langsec errors and how to expunge them."<br/> 2016 IEEE Cybersecurity Development (SecDev). IEEE, 2016.</cite>
 
@@ -163,7 +163,7 @@ class: nord-dark, left, middle
 
 ### GraphQL forces outputs to conform to the type system
 
-> The special case when InputGrammar and OutputGrammar are the same can be employed as a transparent filter at the trust boundary of a system. It acts like a syntactic firewall, improving the system’s predictability by enforcing a strict input specification.
+> The special case when InputGrammar and OutputGrammar are the same can be employed as *a transparent filter at the trust boundary of a system*. It acts like a syntactic firewall, improving the system’s predictability by enforcing a strict input specification.
 
 <cite>BRATUS, SERGEY, et al. "Curing the Vulnerable Parser."</cite>
 
@@ -232,6 +232,23 @@ query {
 query {
   widget(id: 1) // we're just going to return a string!
 }
+```
+
+---
+class: nord-dark, left, middle
+
+```js
+const query = new GraphQLObjectType({
+  name: 'Query',
+  fields: () => ({
+    widget: {
+      type: GraphQLString,
+      resolve: () => {
+        return `select * from widgets limit 1;`
+      },
+    },
+  }),
+})
 ```
 
 ---
@@ -356,7 +373,7 @@ class: nord-dark, left, middle
 
 ```bash
 $ curl -sH "Content-Type: application/graphql" \
-  -d "{widget(id:\"'; drop table widgets; --\")}" localhost:3000 | jq .
+  -d "{ widget(id:\"'; drop table widgets; --\") }" localhost:3000 | jq .
 {
   "data": {
     "widget": "select * from widgets where id = ''; drop table widgets; --';"
@@ -399,16 +416,6 @@ accept, but *you give up attempting to accept arbitrarily complex data*.
 
 class: center, middle
 
-> Trustworthy input is input with predictable effects.
-
-.ninety[![](images/json-type.png)]
-
-<cite>BRATUS, SERGEY, et al. "Curing the Vulnerable Parser."</cite>
-
----
-
-class: center, middle
-
 #### We are wandering away from the specificity needed for predictability.
 
 .ninety[![](images/json-type.png)]
@@ -423,9 +430,8 @@ class: nord-dark, center, middle
 
 class: nord-dark, left, middle
 
-## Strings are unparsed data. Don't bypass the recognizer!
+## Strings are unparsed data
 
-* No length limit!
 * SQL? String
 * Javascript? String
 * URL? String
@@ -532,7 +538,7 @@ class: nord-dark, left, middle
 
 ```bash
 $ curl -sH "Content-Type: application/graphql" \
-   -d "{widget(id:\"'; drop table widgets; --\")}" localhost:3000 | jq .
+   -d "{ widget(id:\"'; drop table widgets; --\") }" localhost:3000 | jq .
 {
   "errors": [
     {
@@ -740,7 +746,7 @@ $ curl -sH "Content-Type: application/graphql" \
 
 class: nord-dark, center, middle
 
-> LangSec offers a unifying explanation for the existence of vulnerabilities and their continual perpetuation under current software design practices despite massive efforts at defining secure development practices. In short, *the existence of exploitable bugs is a consequence of software designs that make verification and comprehensive testing infeasible and undecidable in the formal sense*.
+> LangSec offers a unifying explanation for the existence of vulnerabilities and their continual perpetuation under current software design practices despite massive efforts at defining secure development practices. In short, *the existence of exploitable bugs is a consequence of software designs* that make verification and comprehensive testing infeasible and undecidable in the formal sense.
 
 <cite>LangSec: Recognition, Validation, and Compositional Correctness for Real World Security. (2013). USENIX Security BoF hand-out. Available from http://langsec.org/bof-handout.pdf</cite>
 
